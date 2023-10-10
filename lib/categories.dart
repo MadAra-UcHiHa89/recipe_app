@@ -1,4 +1,6 @@
 import "package:flutter/material.dart";
+import "package:recipe_app/data/categories_data.dart";
+import "package:recipe_app/widgets/category_item.dart";
 
 class CategoriesScreen extends StatelessWidget {
   const CategoriesScreen({super.key});
@@ -10,17 +12,17 @@ class CategoriesScreen extends StatelessWidget {
         title: const Text("Select a category"),
       ),
       body: GridView(
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2, childAspectRatio: 3 / 2),
-        children: const [
-          Text(
-            "1",
-            style: TextStyle(color: Colors.white),
-          ),
-          Text("2", style: TextStyle(color: Colors.white)),
-          Text("3", style: TextStyle(color: Colors.white)),
-          Text("4", style: TextStyle(color: Colors.white)),
-          Text("5", style: TextStyle(color: Colors.white)),
+        padding: const EdgeInsets.all(16),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          childAspectRatio: 3 / 2,
+          crossAxisSpacing: 20,
+          mainAxisSpacing: 20,
+        ),
+        children: [
+          ...availableCategories
+              .map((cat) => CategoryItem(category: cat))
+              .toList()
         ],
       ),
     );
